@@ -1,0 +1,49 @@
+/* body */
+body {
+    background: linear-gradient(135deg, #b41d40, #310107);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* login box */
+.custom-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 40px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* "entrar" button */
+.btn-custom {
+    background-color: #b41d40;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #991936;
+    transform: scale(1.02);
+}
+
+/* forgot password colors */
+.forgot-password {
+    color: #b41d40;
+}
+
+.forgot-password:hover {
+    color: #991936
+}
+
+/* input contour*/
+input:focus {
+    outline: none;
+    border-color: #b41d40 !important;
+    box-shadow: 0 0 5px rgba(180, 29, 64, 0.5) !important;
+}
