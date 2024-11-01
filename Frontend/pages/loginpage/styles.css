@@ -27,6 +27,7 @@ body {
     background-color: #b41d40;
     color: white;
     transition: background-color 0.3s ease;
+    border-radius: 20px;
 }
 
 .btn-custom:hover {
@@ -48,4 +49,9 @@ input:focus {
     outline: none;
     border-color: #b41d40 !important;
     box-shadow: 0 0 5px rgba(180, 29, 64, 0.5) !important;
+}
+
+/* input styles */
+#email, #password {
+    border-radius: 20px;
 }
