@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AndreiaFerreira.ClinicaApi.Data;
 
-public class AppDbContext : IdentityDbContext<User>
+public class IdentityPersonalizedDbContext : IdentityDbContext<User>
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public IdentityPersonalizedDbContext(DbContextOptions<IdentityPersonalizedDbContext> options) : base(options)
     {
     }
 }
