@@ -1,5 +1,6 @@
 using System;
 using AndreiaFerreira.ClinicaApi.Data;
+using AndreiaFerreira.ClinicaApi.Interfaces;
 using AndreiaFerreira.ClinicaApi.Models.Entities;
 using AndreiaFerreira.ClinicaApi.Services;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,31 @@ public class ClientRepository : IClientRepository
         _context.Entry(clientFromDb).CurrentValues.SetValues(client);
         await _context.SaveChangesAsync();
         return clientFromDb;
+    }
+
+    public async Task<ClientModel> GetClientAsync(int id)
+    {
+        var client = await _context.Pacientes.FindAsync(id);
+        if (client == null)
+        {
+            throw new KeyNotFoundException("Client not found");
+        }
+        return client;
+    }
+
+    public async Task<ClientModel> GetClientWithAnamneseAsync(int id)
+    {
+        var client = await _context.Pacientes.Include(c => c.Anamnese).FirstOrDefaultAsync(c => c.Id == id);
+        if (client == null)
+        {
+            throw new KeyNotFoundException("Client not found");
+        }
+        return client;
+    }
+
+    public async Task<IEnumerable<ClientModel>> GetAllClientsWithAnamneseAsync()
+    {
+        return await _context.Pacientes.Include(c => c.Anamnese).ToListAsync();
     }
 }
 

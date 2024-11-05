@@ -56,7 +56,6 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    [Authorize]
     public async Task<IActionResult> Register(RegisterModel model)
     {
         try

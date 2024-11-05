@@ -2,6 +2,7 @@ using System.Text;
 using AndreiaFerreira.ClinicaApi.Data;
 using AndreiaFerreira.ClinicaApi.Interfaces;
 using AndreiaFerreira.ClinicaApi.Models;
+using AndreiaFerreira.ClinicaApi.Repositories;
 using AndreiaFerreira.ClinicaApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -47,6 +48,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 // Configuração de autorização
 builder.Services.AddAuthorization();
@@ -98,3 +101,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
