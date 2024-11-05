@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pacientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Link para a fonte -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Coluna de Navegação -->
+            <aside class="col-md-3 col-lg-2 bg-light p-4 sidebar">
+                <img src="../assets/logo.png" alt="Logo da Clínica" class="logo mb-4">
+                <nav>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link active">Pacientes</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link">Agenda</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Atendimentos</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Área Principal -->
+            <main class="col-md-9 col-lg-10 p-4">
+                <!-- Cabeçalho da Página -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="page-title">Pacientes</h1>
+                    <div>
+                        <button class="btn btn-custom me-2">+ Novo Paciente</button>
+                        <input type="text" class="form-control d-inline-block" placeholder="Buscar por nome ou CPF" id="search" style="width: 200px;">
+                    </div>
+                </div>
+
+                <!-- Tabela de Pacientes -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data de Nascimento</th>
+                                <th>CPF</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Cidade</th>
+                                <th>UF</th>
+                                <th>CEP</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kleber Ferreira</td>
+                                <td>01/01/1990</td>
+                                <td>123.456.789-00</td>
+                                <td>(62) 98765-4321</td>
+                                <td>kleber@exemplo.com</td>
+                                <td>Goiânia</td>
+                                <td>GO</td>
+                                <td>12345-678</td>
+                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                            </tr>
+                            <tr>
+                                <td>Maria da Silva</td>
+                                <td>01/01/1985</td>
+                                <td>111.222.333-44</td>
+                                <td>(21) 91234-5678</td>
+                                <td>maria@exemplo.com</td>
+                                <td>São Paulo</td>
+                                <td>SP</td>
+                                <td>01234-567</td>
+                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                            </tr>
+                            <tr>
+                                <td>João Pereira</td>
+                                <td>15/05/1990</td>
+                                <td>222.333.444-55</td>
+                                <td>(31) 99876-5432</td>
+                                <td>joao@exemplo.com</td>
+                                <td>Rio de Janeiro</td>
+                                <td>RJ</td>
+                                <td>98765-432</td>
+                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                            </tr>
+                            <tr>
+                                <td>Ana Costa</td>
+                                <td>20/10/1995</td>
+                                <td>333.444.555-66</td>
+                                <td>(41) 91234-5678</td>
+                                <td>ana@exemplo.com</td>
+                                <td>Belo Horizonte</td>
+                                <td>MG</td>
+                                <td>45678-901</td>
+                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                            </tr>
+                            <tr>
+                                <td>Pedro Lima</td>
+                                <td>05/12/1988</td>
+                                <td>444.555.666-77</td>
+                                <td>(51) 99876-5432</td>
+                                <td>pedro@exemplo.com</td>
+                                <td>Curitiba</td>
+                                <td>PR</td>
+                                <td>23456-789</td>
+                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
