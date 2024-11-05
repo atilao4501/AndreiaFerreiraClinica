@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Text;
 using AndreiaFerreira.ClinicaApi.Interfaces;
 using AndreiaFerreira.ClinicaApi.Models;
-using AndreiaFerreira.ClinicaApi.Models.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -26,7 +25,7 @@ public class AuthService : IAuthService
     }
 
 
-    public async Task<LoginOutput> Login(LoginModel model)
+    public async Task<string> Login(LoginModel model)
     {
         var user = await _userManager.FindByNameAsync(model.UserName);
 
@@ -53,11 +52,7 @@ public class AuthService : IAuthService
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var tokenstring = tokenHandler.WriteToken(token);
 
-                return new LoginOutput()
-                {
-                    Message = "Login Sucessful",
-                    Token = tokenstring
-                };
+                return tokenstring;
             }
             else
             {

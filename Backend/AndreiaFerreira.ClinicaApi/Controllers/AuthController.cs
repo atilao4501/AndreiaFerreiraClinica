@@ -32,19 +32,26 @@ public class AuthController : ControllerBase
         {
             var output = await _AuthService.Login(model);
 
-            return Ok(output);
+            return Ok(new DefaultOutput<string>()
+            {
+                Message = "Login Sucessful",
+                StatusHttp = 200,
+                Result = output
+            });
         }
         catch (HttpRequestException ex)
         {
-            return StatusCode((int)ex.StatusCode, new LoginOutput
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<string>
             {
                 Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (System.Exception ex)
         {
 
-            return StatusCode((int)HttpStatusCode.InternalServerError, new LoginOutput { Message = "Erro interno" });
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<string>
+            { Message = "Server Error", StatusHttp = (int)HttpStatusCode.InternalServerError, Result = null });
         }
     }
 
@@ -56,16 +63,32 @@ public class AuthController : ControllerBase
         {
             var output = await _AuthService.Register(model);
 
-            return Ok(output);
+            return Ok(new DefaultOutput<bool>()
+            {
+                Message = "User created",
+                StatusHttp = 200,
+                Result = output
+            });
         }
         catch (HttpRequestException ex)
         {
-            return StatusCode((int)ex.StatusCode, ex.Message);
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+                Result = false
+            });
         }
         catch (System.Exception ex)
         {
 
-            return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<bool>
+            {
+                Message = "Server Error",
+                StatusHttp = (int)HttpStatusCode.InternalServerError,
+                Result = false
+            });
         }
     }
 }
+

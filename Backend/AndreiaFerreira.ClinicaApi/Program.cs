@@ -18,6 +18,10 @@ builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.Environment
 builder.Services.AddDbContext<IdentityPersonalizedDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection")));
 
+// Configura o DBContext ClinicDbContext
+builder.Services.AddDbContext<ClinicDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Adicionando Identity
 builder.Services
     .AddIdentity<User, IdentityRole>()
