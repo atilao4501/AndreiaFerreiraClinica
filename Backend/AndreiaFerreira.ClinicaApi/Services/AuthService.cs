@@ -24,7 +24,6 @@ public class AuthService : IAuthService
         _cofiguration = configuration;
     }
 
-
     public async Task<string> Login(LoginModel model)
     {
         var user = await _userManager.FindByNameAsync(model.UserName);
@@ -56,18 +55,17 @@ public class AuthService : IAuthService
             }
             else
             {
-                throw new HttpRequestException("Incorrect credentials", null, HttpStatusCode.Unauthorized);
+                throw new PersonalizedException("Credenciais inválidas", HttpStatusCode.Unauthorized);
             }
         }
         else
         {
-            throw new HttpRequestException("User not found", null, HttpStatusCode.NotFound);
+            throw new PersonalizedException("Usuário não encontrado", HttpStatusCode.NotFound);
         }
     }
 
     public async Task<bool> Register(RegisterModel model)
     {
-
         var user = new User()
         {
             UserName = model.UserName,
@@ -79,6 +77,8 @@ public class AuthService : IAuthService
         {
             return true;
         }
-        throw new HttpRequestException(result.Errors.First().Description, null, HttpStatusCode.BadRequest);
+        throw new PersonalizedException(result.Errors.First().Description, HttpStatusCode.BadRequest);
     }
 }
+
+

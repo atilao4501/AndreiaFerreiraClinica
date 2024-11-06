@@ -20,9 +20,6 @@ public interface IClientRepository
     Task<ClientModel> GetClientAsync(int id);
     // Implementar endpoint GET para obter um paciente com as rela es
     // de anamnese
-    Task<ClientModel> GetClientWithAnamneseAsync(int id);
-
-    // Implementar endpoint GET para obter todos os pacientes com as
-    // rela es de anamnese
     Task<IEnumerable<ClientModel>> GetAllClientsWithAnamneseAsync();
+    public Task<ClientModel> GetClientWithAnamneseAsync(int id);
 }

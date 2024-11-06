@@ -44,6 +44,7 @@ public class ClientService : IClientService
     public async Task<ClientModel> GetClientWithAnamneseAsync(int id)
     {
         return await _clientRepository.GetClientWithAnamneseAsync(id);
+
     }
 
     public async Task<ClientModel> UpdateClientAsync(ClientModel client)

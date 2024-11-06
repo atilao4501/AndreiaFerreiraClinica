@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using AndreiaFerreira.ClinicaApi.Data;
 using AndreiaFerreira.ClinicaApi.Interfaces;
@@ -11,6 +12,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pt-BR");
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
@@ -50,6 +56,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IAgendaService, AgendaService>();
+builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
 
 // Configuração de autorização
 builder.Services.AddAuthorization();

@@ -28,7 +28,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.CreateClientAsync(client);
             return Ok(new DefaultOutput<ClientModel>
             {
-                Message = "Client created successfully",
+                Message = "Cliente criado com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -37,7 +37,7 @@ public class ClientController : ControllerBase
         {
             return BadRequest(new DefaultOutput<ClientModel>
             {
-                Message = ex.Message,
+                Message = "Informe os dados do cliente",
                 StatusHttp = 400,
             });
         }
@@ -45,7 +45,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -59,7 +59,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.DeleteClientAsync(id);
             return Ok(new DefaultOutput<bool>
             {
-                Message = "Client deleted successfully",
+                Message = "Cliente deletado com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -68,7 +68,7 @@ public class ClientController : ControllerBase
         {
             return NotFound(new DefaultOutput<bool>
             {
-                Message = ex.Message,
+                Message = "Cliente não encontrado",
                 StatusHttp = 404,
             });
         }
@@ -76,7 +76,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<bool>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -90,7 +90,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.GetAllClientsAsync();
             return Ok(new DefaultOutput<IEnumerable<ClientModel>>
             {
-                Message = "Clients retrieved successfully",
+                Message = "Clientes recuperados com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -99,7 +99,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<IEnumerable<ClientModel>>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -113,7 +113,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.GetClientAsync(id);
             return Ok(new DefaultOutput<ClientModel>
             {
-                Message = "Client retrieved successfully",
+                Message = "Cliente recuperado com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -122,7 +122,7 @@ public class ClientController : ControllerBase
         {
             return NotFound(new DefaultOutput<ClientModel>
             {
-                Message = ex.Message,
+                Message = "Cliente n o encontrado",
                 StatusHttp = 404,
             });
         }
@@ -130,7 +130,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -144,7 +144,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.UpdateClientAsync(client);
             return Ok(new DefaultOutput<ClientModel>
             {
-                Message = "Client updated successfully",
+                Message = "Cliente atualizado com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -153,7 +153,7 @@ public class ClientController : ControllerBase
         {
             return BadRequest(new DefaultOutput<ClientModel>
             {
-                Message = ex.Message,
+                Message = "Informe os dados do cliente",
                 StatusHttp = 400,
             });
         }
@@ -161,7 +161,7 @@ public class ClientController : ControllerBase
         {
             return NotFound(new DefaultOutput<ClientModel>
             {
-                Message = ex.Message,
+                Message = "Cliente n o encontrado",
                 StatusHttp = 404,
             });
         }
@@ -169,7 +169,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -182,7 +182,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.GetClientWithAnamneseAsync(id);
             return Ok(new DefaultOutput<ClientModel>
             {
-                Message = "Client with anamnese retrieved successfully",
+                Message = "Cliente com anamnese recuperado com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -191,7 +191,7 @@ public class ClientController : ControllerBase
         {
             return NotFound(new DefaultOutput<ClientModel>
             {
-                Message = ex.Message,
+                Message = "Cliente n o encontrado",
                 StatusHttp = 404,
             });
         }
@@ -199,7 +199,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
@@ -213,7 +213,7 @@ public class ClientController : ControllerBase
             var result = await _clientService.GetAllClientsWithAnamneseAsync();
             return Ok(new DefaultOutput<IEnumerable<ClientModel>>
             {
-                Message = "All clients with anamnese retrieved successfully",
+                Message = "Todos os clientes com anamnese recuperados com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
@@ -222,7 +222,7 @@ public class ClientController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<IEnumerable<ClientModel>>
             {
-                Message = "Server Error",
+                Message = "Erro interno do servidor",
                 StatusHttp = (int)HttpStatusCode.InternalServerError,
 
             });
