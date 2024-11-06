@@ -114,3 +114,15 @@ body {
 .main-header .d-flex {
     gap: 20px;
 }
+
+/* close button */
+.btn-secondary {
+    border-radius: 20px;
+}
+
+/* form input */
+.form-control:focus {
+    outline: none;
+    border-color: #b41d40;
+    box-shadow: 0 0 5px rgba(180, 29, 64, 0.5);
+}

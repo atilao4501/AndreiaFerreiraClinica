@@ -11,30 +11,31 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- navegation column -->
+            <!-- Navegação -->
             <aside class="col-12 col-md-3 col-lg-2 bg-light p-4 sidebar">
                 <img src="../assets/logo.png" alt="Logo da Clínica" class="logo mb-4">
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a href="#" class="nav-link active">Pacientes</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link">Agenda</a></li>
+                        <li class="nav-item mb-2"><a href="../agenda/index.html" class="nav-link">Agenda</a></li>                        
                         <li class="nav-item"><a href="#" class="nav-link">Atendimentos</a></li>
                     </ul>
                 </nav>
             </aside>
 
-            <!-- principal area -->
+            <!-- Área Principal -->
             <main class="col-12 col-md-9 col-lg-10 p-4">
-                <!-- page header -->
+                <!-- Cabeçalho da Página -->
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                     <h1 class="page-title">Pacientes</h1>
                     <div class="d-flex flex-column flex-md-row align-items-center">
-                        <button class="btn btn-custom me-md-2 mb-2 mb-md-0">+ Novo Paciente</button>
+                        <!-- Botão para abrir o Modal -->
+                        <button class="btn btn-custom me-md-2 mb-2 mb-md-0" data-bs-toggle="modal" data-bs-target="#addPatientModal">+ Novo Paciente</button>
                         <input type="text" class="form-control d-inline-block" placeholder="Buscar por nome ou CPF" id="search" style="width: 200px;">
                     </div>
                 </div>
 
-                <!-- pacients table -->
+                <!-- Tabela de Pacientes -->
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead class="table-light">
@@ -51,68 +52,225 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Kleber Ferreira</td>
-                                <td>01/01/1990</td>
-                                <td>123.456.789-00</td>
-                                <td>(62) 98765-4321</td>
-                                <td>kleber@exemplo.com</td>
-                                <td>Goiânia</td>
-                                <td>GO</td>
-                                <td>12345-678</td>
-                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <td>Maria da Silva</td>
-                                <td>01/01/1985</td>
-                                <td>111.222.333-44</td>
-                                <td>(21) 91234-5678</td>
-                                <td>maria@exemplo.com</td>
-                                <td>São Paulo</td>
-                                <td>SP</td>
-                                <td>01234-567</td>
-                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <td>João Pereira</td>
-                                <td>15/05/1990</td>
-                                <td>222.333.444-55</td>
-                                <td>(31) 99876-5432</td>
-                                <td>joao@exemplo.com</td>
-                                <td>Rio de Janeiro</td>
-                                <td>RJ</td>
-                                <td>98765-432</td>
-                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <td>Ana Costa</td>
-                                <td>20/10/1995</td>
-                                <td>333.444.555-66</td>
-                                <td>(41) 91234-5678</td>
-                                <td>ana@exemplo.com</td>
-                                <td>Belo Horizonte</td>
-                                <td>MG</td>
-                                <td>45678-901</td>
-                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <td>Pedro Lima</td>
-                                <td>05/12/1988</td>
-                                <td>444.555.666-77</td>
-                                <td>(51) 99876-5432</td>
-                                <td>pedro@exemplo.com</td>
-                                <td>Curitiba</td>
-                                <td>PR</td>
-                                <td>23456-789</td>
-                                <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                            </tr>
+                            <!-- Aqui não tem pacientes de exemplo, fica vazio para a inserção dos dados -->
                         </tbody>
                     </table>
                 </div>
             </main>
         </div>
     </div>
-    
+
+<!-- Modal de Adicionar Paciente -->
+<div class="modal fade" id="addPatientModal" tabindex="-1" aria-labelledby="addPatientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addPatientModalLabel">Adicionar Novo Paciente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addPatientForm">
+                    <!-- Dados Pessoais -->
+                    <div class="mb-3">
+                        <label for="patientName" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="patientName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientBirthday" class="form-label">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="patientBirthday" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientCpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="patientCpf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientPhone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="patientPhone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="patientEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientCity" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="patientCity" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientState" class="form-label">Estado (UF)</label>
+                        <input type="text" class="form-control" id="patientState" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientZip" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="patientZip" required>
+                    </div>
+
+                    <!-- Anamnese -->
+                    <h5 class="mt-4">Anamnese</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Diabetes?</label><br>
+                        <input type="radio" name="diabetes" value="sim"> Sim
+                        <input type="radio" name="diabetes" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fumante?</label><br>
+                        <input type="radio" name="smoking" value="sim"> Sim
+                        <input type="radio" name="smoking" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Está menstruada?</label><br>
+                        <input type="radio" name="menstruada" value="sim"> Sim
+                        <input type="radio" name="menstruada" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Está grávida?</label><br>
+                        <input type="radio" name="pregnant" value="sim"> Sim
+                        <input type="radio" name="pregnant" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Varizes ou Lesões?</label><br>
+                        <input type="radio" name="varices" value="sim"> Sim
+                        <input type="radio" name="varices" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Distúrbio renal?</label><br>
+                        <input type="radio" name="renal" value="sim"> Sim
+                        <input type="radio" name="renal" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Distúrbio hormonal?</label><br>
+                        <input type="radio" name="hormonal" value="sim"> Sim
+                        <input type="radio" name="hormonal" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Funcionamento intestinal regular?</label><br>
+                        <input type="radio" name="intestinal" value="sim"> Sim
+                        <input type="radio" name="intestinal" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Distúrbio circulatório?</label><br>
+                        <input type="radio" name="circulatory" value="sim"> Sim
+                        <input type="radio" name="circulatory" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tem epilepsia/convulsões?</label><br>
+                        <input type="radio" name="epilepsy" value="sim"> Sim
+                        <input type="radio" name="epilepsy" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hiper/Hipotensão?</label><br>
+                        <input type="radio" name="hypertension" value="sim"> Sim
+                        <input type="radio" name="hypertension" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Problemas cardíacos?</label><br>
+                        <input type="radio" name="heart_problem" value="sim"> Sim
+                        <input type="radio" name="heart_problem" value="nao"> Não
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cuidados com a pele?</label><br>
+                        <input type="radio" name="skin_care" value="sim"> Sim
+                        <input type="radio" name="skin_care" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="skin_care_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ingere água com que frequência?</label><br>
+                        <input type="text" class="form-control" id="water_intake" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Alimentação balanceada?</label><br>
+                        <input type="radio" name="balanced_diet" value="sim"> Sim
+                        <input type="radio" name="balanced_diet" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="balanced_diet_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ingere bebida alcoólica?</label><br>
+                        <input type="radio" name="alcohol" value="sim"> Sim
+                        <input type="radio" name="alcohol" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="alcohol_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Pratica atividade física?</label><br>
+                        <input type="radio" name="physical_activity" value="sim"> Sim
+                        <input type="radio" name="physical_activity" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="physical_activity_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Antecedentes oncológicos?</label><br>
+                        <input type="radio" name="oncological_history" value="sim"> Sim
+                        <input type="radio" name="oncological_history" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="oncological_history_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Problemas ortopédicos?</label><br>
+                        <input type="radio" name="orthopedic_problems" value="sim"> Sim
+                        <input type="radio" name="orthopedic_problems" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="orthopedic_problems_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Medicamentos de uso diário?</label><br>
+                        <input type="radio" name="daily_medications" value="sim"> Sim
+                        <input type="radio" name="daily_medications" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="daily_medications_details" placeholder="Qual?">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Em tratamento médico?</label><br>
+                        <input type="radio" name="medical_treatment" value="sim"> Sim
+                        <input type="radio" name="medical_treatment" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="medical_treatment_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Problemas de pele?</label><br>
+                        <input type="radio" name="skin_problems" value="sim"> Sim
+                        <input type="radio" name="skin_problems" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="skin_problems_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cirurgia recente?</label><br>
+                        <input type="radio" name="recent_surgery" value="sim"> Sim
+                        <input type="radio" name="recent_surgery" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="recent_surgery_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ciclo menstrual regular?</label><br>
+                        <input type="radio" name="regular_menstrual_cycle" value="sim"> Sim
+                        <input type="radio" name="regular_menstrual_cycle" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="regular_menstrual_cycle_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Próteses metálicas?</label><br>
+                        <input type="radio" name="metal_prostheses" value="sim"> Sim
+                        <input type="radio" name="metal_prostheses" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="metal_prostheses_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Possui alergia?</label><br>
+                        <input type="radio" name="allergy" value="sim"> Sim
+                        <input type="radio" name="allergy" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="allergy_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fica muito tempo sentada?</label><br>
+                        <input type="radio" name="sitting_time" value="sim"> Sim
+                        <input type="radio" name="sitting_time" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="sitting_time_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Antecedentes cirúrgicos?</label><br>
+                        <input type="radio" name="surgical_history" value="sim"> Sim
+                        <input type="radio" name="surgical_history" value="nao"> Não
+                        <input type="text" class="form-control mt-2" id="surgical_history_details" placeholder="Especifique...">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-custom">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
