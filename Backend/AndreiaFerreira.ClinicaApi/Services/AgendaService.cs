@@ -37,6 +37,11 @@ public class AgendaService : IAgendaService
 
         return await _agendaRepository.CreateAgendaAsync(agenda);
     }
+    public async Task<bool> DeleteAgendaAsync(int id)
+    {
+        return await _agendaRepository.DeleteAgendaAsync(id);
+    }
+
 
     public async Task<List<AgendaModel>> GetScheduleByDateAsync(DateTime initialDate, DateTime finalDate)
     {
@@ -57,7 +62,8 @@ public class AgendaService : IAgendaService
     {
         return await _agendaRepository.UpdateAgendaAsync(agendaUpdate);
 
-
     }
+
+
 }
 

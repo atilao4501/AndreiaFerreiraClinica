@@ -14,6 +14,7 @@ namespace AndreiaFerreira.ClinicaApi.Interfaces
         Task<List<AgendaModel>> SearchScheduleByPatientCPFAsync(string patientCPF);
         Task<AgendaModel> CreateAgendaAsync(AgendaModel agenda);
         Task<AgendaModel> UpdateAgendaAsync(UpdateAgendaDTO agendaUpdate);
+        Task<bool> DeleteAgendaAsync(int id);
     }
 }
 

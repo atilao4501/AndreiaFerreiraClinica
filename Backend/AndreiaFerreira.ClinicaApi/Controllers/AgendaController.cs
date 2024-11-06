@@ -172,4 +172,36 @@ public class AgendaController : ControllerBase
             });
         }
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<DefaultOutput<bool>>> Delete(int id)
+    {
+        try
+        {
+            var result = await _agendaService.DeleteAgendaAsync(id);
+            return Ok(new DefaultOutput<bool>
+            {
+                Message = "Agenda deletada com sucesso",
+                StatusHttp = 200,
+                Result = result
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<bool>
+            {
+                Message = "Ocorreu um erro inesperado",
+                StatusHttp = (int)HttpStatusCode.InternalServerError
+            });
+        }
+    }
+
 }

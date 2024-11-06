@@ -1,0 +1,97 @@
+{
+  "info": {
+    "_postman_id": "AgendaController",
+    "name": "AgendaController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Criar Agenda",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"PacienteId\": 1, \"DataAgendamento\": \"2024-03-16T14:30:00\", \"Observacoes\": \"Observações da agenda\", \"Profissional\": \"Profissional responsável\", \"Tipo_de_servico\": \"Tipo de serviço\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda"]
+        }
+      }
+    },
+    {
+      "name": "Buscar Agenda por ID do Paciente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/paciente/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "paciente", "1"]
+        }
+      }
+    },
+    {
+      "name": "Buscar Agenda por CPF do Paciente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/paciente/cpf/12345678901",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "paciente", "cpf", "12345678901"]
+        }
+      }
+    },
+    {
+      "name": "Atualizar Agenda",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"Id\": 1, \"PacienteId\": 1, \"DataAgendamento\": \"2024-03-16T14:30:00\", \"Observacoes\": \"Observações da agenda atualizada\", \"Profissional\": \"Profissional responsável\", \"Tipo_de_servico\": \"Tipo de serviço\"}"
+        },
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda"]
+        }
+      }
+    },
+    {
+      "name": "Deletar Agenda",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "1"]
+        }
+      }
+    }
+  ]
+}

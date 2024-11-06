@@ -115,5 +115,20 @@ public class AgendaRepository : IAgendaRepository
             throw new PersonalizedException("Ocorreu um erro ao tentar atualizar a agenda", HttpStatusCode.InternalServerError);
         }
     }
+
+    public async Task<bool> DeleteAgendaAsync(int id)
+    {
+        var agenda = await _context.Agendas.FindAsync(id);
+        if (agenda == null)
+        {
+            throw new PersonalizedException("Agenda não encontrada", HttpStatusCode.NotFound);
+        }
+
+        _context.Agendas.Remove(agenda);
+        await _context.SaveChangesAsync();
+
+        return true;
+
+    }
 }
 
