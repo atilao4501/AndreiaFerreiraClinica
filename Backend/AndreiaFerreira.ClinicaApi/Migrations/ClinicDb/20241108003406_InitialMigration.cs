@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -8,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AndreiaFerreira.ClinicaApi.Migrations.ClinicDb
 {
     /// <inheritdoc />
-    public partial class ClinicDbCreation : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,7 +66,8 @@ namespace AndreiaFerreira.ClinicaApi.Migrations.ClinicDb
                     Whatsapp = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Como_nos_conheceu = table.Column<string>(type: "text", nullable: true),
-                    AnamneseId = table.Column<int>(type: "integer", nullable: false)
+                    AnamneseId = table.Column<int>(type: "integer", nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,72 +81,44 @@ namespace AndreiaFerreira.ClinicaApi.Migrations.ClinicDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Agendas",
+                name: "Sessoes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PacienteId = table.Column<int>(type: "integer", nullable: false),
-                    DataHora = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Tipo_de_servico = table.Column<string>(type: "text", nullable: false),
+                    DataHoraSessao = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    TipoDeServico = table.Column<string>(type: "text", nullable: false),
                     Profissional = table.Column<string>(type: "text", nullable: false),
                     Observacoes = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agendas", x => x.Id);
+                    table.PrimaryKey("PK_Sessoes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Agendas_Pacientes_PacienteId",
+                        name: "FK_Sessoes_Pacientes_PacienteId",
                         column: x => x.PacienteId,
                         principalTable: "Pacientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Atendimentos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PacienteId = table.Column<int>(type: "integer", nullable: false),
-                    Sessoes = table.Column<List<bool>>(type: "boolean[]", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Atendimentos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Atendimentos_Pacientes_PacienteId",
-                        column: x => x.PacienteId,
-                        principalTable: "Pacientes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendas_PacienteId",
-                table: "Agendas",
-                column: "PacienteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Atendimentos_PacienteId",
-                table: "Atendimentos",
-                column: "PacienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pacientes_AnamneseId",
                 table: "Pacientes",
                 column: "AnamneseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sessoes_PacienteId",
+                table: "Sessoes",
+                column: "PacienteId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Agendas");
-
-            migrationBuilder.DropTable(
-                name: "Atendimentos");
+                name: "Sessoes");
 
             migrationBuilder.DropTable(
                 name: "Pacientes");

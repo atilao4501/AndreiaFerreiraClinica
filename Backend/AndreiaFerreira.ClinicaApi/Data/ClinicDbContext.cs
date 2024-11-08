@@ -11,6 +11,5 @@ public class ClinicDbContext : DbContext
     }
     public DbSet<ClientModel> Pacientes { get; set; }
     public DbSet<AnamneseModel> Anamneses { get; set; }
-    public DbSet<AgendaModel> Agendas { get; set; }
-    public DbSet<CustomerTreatmentModel> Atendimentos { get; set; }
+    public DbSet<SessionModel> Sessoes { get; set; }
 }

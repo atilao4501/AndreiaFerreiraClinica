@@ -18,190 +18,102 @@ public class AgendaController : ControllerBase
         _agendaService = agendaService;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<DefaultOutput<AgendaModel>>> CreateAgenda(CreateAgendaDTO agenda)
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllSessionAgendaAsync()
     {
         try
         {
-            var result = await _agendaService.CreateAgendaAsync(agenda);
-            return Ok(new DefaultOutput<AgendaModel>
+            var result = await _agendaService.GetAllSchedulesAsync();
+
+            return Ok(new DefaultOutput<IEnumerable<SessionModel>>
             {
-                Message = "Agenda criada com sucesso",
+                Message = "Todas as sessões recuperadas com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
         }
         catch (PersonalizedException ex)
         {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<AgendaModel>
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<IEnumerable<SessionModel>>
             {
                 Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)
         {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<AgendaModel>
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<IEnumerable<SessionModel>>
             {
-                Message = "Ocorreu um erro inesperado",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
+                Message = "Erro interno do servidor",
+                StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
     }
 
     [HttpGet]
-    public async Task<ActionResult<DefaultOutput<List<AgendaModel>>>> GetScheduleByDate(DateTime initialDate, DateTime finalDate)
+    public async Task<IActionResult> GetAgendaByClientAsync(int clientId)
+    {
+        try
+        {
+            var result = await _agendaService.GetScheduleByClientAsync(clientId);
+
+            return Ok(new DefaultOutput<IEnumerable<SessionModel>>
+            {
+                Message = "Sessões do cliente recuperadas com sucesso",
+                StatusHttp = 200,
+                Result = result
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<IEnumerable<SessionModel>>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<IEnumerable<SessionModel>>
+            {
+                Message = "Erro interno do servidor",
+                StatusHttp = (int)HttpStatusCode.InternalServerError,
+            });
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAgendaByDateAsync([FromQuery] DateTime? initialDate = null, [FromQuery] DateTime? finalDate = null)
     {
         try
         {
             var result = await _agendaService.GetScheduleByDateAsync(initialDate, finalDate);
-            return Ok(new DefaultOutput<List<AgendaModel>>
-            {
-                Message = "Agenda obtida com sucesso",
-                StatusHttp = 200,
-                Result = result
-            });
-        }
-        catch (PersonalizedException ex)
-        {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<List<AgendaModel>>
-            {
-                Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<List<AgendaModel>>
-            {
-                Message = "Ocorreu um erro ao tentar obter a agenda",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
-            });
-        }
-    }
 
-    [HttpGet]
-    public async Task<ActionResult<DefaultOutput<List<AgendaModel>>>> SearchScheduleByPatientId(int patientId)
-    {
-        try
-        {
-            var result = await _agendaService.SearchScheduleByPatientIdAsync(patientId);
-            return Ok(new DefaultOutput<List<AgendaModel>>
+            return Ok(new DefaultOutput<IEnumerable<SessionModel>>
             {
-                Message = "Agenda obtida com sucesso",
+                Message = "Sessões por data recuperadas com sucesso",
                 StatusHttp = 200,
                 Result = result
             });
         }
         catch (PersonalizedException ex)
         {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<List<AgendaModel>>
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<IEnumerable<SessionModel>>
             {
                 Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)
         {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<List<AgendaModel>>
+            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<IEnumerable<SessionModel>>
             {
-                Message = "Ocorreu um erro ao tentar buscar a agenda",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
-            });
-        }
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<DefaultOutput<List<AgendaModel>>>> SearchScheduleByPatientCPF(string patientCPF)
-    {
-        try
-        {
-            var result = await _agendaService.SearchScheduleByPatientCPFAsync(patientCPF);
-            return Ok(new DefaultOutput<List<AgendaModel>>
-            {
-                Message = "Agenda obtida com sucesso",
-                StatusHttp = 200,
-                Result = result
-            });
-        }
-        catch (PersonalizedException ex)
-        {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<List<AgendaModel>>
-            {
-                Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<List<AgendaModel>>
-            {
-                Message = "Ocorreu um erro ao tentar buscar a agenda",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
-            });
-        }
-    }
-
-    [HttpPut]
-    public async Task<ActionResult<DefaultOutput<AgendaModel>>> UpdateAgenda(UpdateAgendaDTO agendaUpdate)
-    {
-        try
-        {
-            var result = await _agendaService.UpdateAgendaAsync(agendaUpdate);
-            return Ok(new DefaultOutput<AgendaModel>
-            {
-                Message = "Agenda atualizada com sucesso",
-                StatusHttp = 200,
-                Result = result
-            });
-        }
-        catch (PersonalizedException ex)
-        {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<AgendaModel>
-            {
-                Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<AgendaModel>
-            {
-                Message = "Ocorreu um erro inesperado",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
-            });
-        }
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<ActionResult<DefaultOutput<bool>>> Delete(int id)
-    {
-        try
-        {
-            var result = await _agendaService.DeleteAgendaAsync(id);
-            return Ok(new DefaultOutput<bool>
-            {
-                Message = "Agenda deletada com sucesso",
-                StatusHttp = 200,
-                Result = result
-            });
-        }
-        catch (PersonalizedException ex)
-        {
-            return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
-            {
-                Message = ex.Message,
-                StatusHttp = (int)ex.StatusCode
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<bool>
-            {
-                Message = "Ocorreu um erro inesperado",
-                StatusHttp = (int)HttpStatusCode.InternalServerError
+                Message = "Erro interno do servidor",
+                StatusHttp = (int)HttpStatusCode.InternalServerError,
             });
         }
     }
 
 }
+

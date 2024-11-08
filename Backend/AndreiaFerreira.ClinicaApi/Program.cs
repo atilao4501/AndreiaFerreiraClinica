@@ -6,8 +6,13 @@ using AndreiaFerreira.ClinicaApi.Models;
 using AndreiaFerreira.ClinicaApi.Repositories;
 using AndreiaFerreira.ClinicaApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -57,7 +62,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IAgendaService, AgendaService>();
-builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<ISessionRepository, SessionRepository>();
+builder.Services.AddScoped<ICustomerServiceService, CustomerServiceService>();
 
 // Configuração de autorização
 builder.Services.AddAuthorization();
