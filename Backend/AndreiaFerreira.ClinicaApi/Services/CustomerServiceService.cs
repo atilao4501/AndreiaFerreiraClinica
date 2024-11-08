@@ -25,7 +25,7 @@ public class CustomerServiceService : ICustomerServiceService
             customerServiceReturn.Add(new CustomerServiceModel
             {
                 NomePaciente = session.Paciente.Nome_completo,
-                Sessoes = (List<SessionModel>)allSessions.Where(x => x.Paciente.Nome_completo == session.Paciente.Nome_completo)
+                Sessoes = (allSessions.Where(x => x.Paciente.Nome_completo == session.Paciente.Nome_completo).ToList())
             });
         }
         return customerServiceReturn;

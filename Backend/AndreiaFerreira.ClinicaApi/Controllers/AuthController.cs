@@ -39,6 +39,14 @@ public class AuthController : ControllerBase
                 Result = output
             });
         }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<string>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+            });
+        }
         catch (HttpRequestException ex)
         {
             return StatusCode((int)ex.StatusCode, new DefaultOutput<string>
@@ -49,9 +57,12 @@ public class AuthController : ControllerBase
         }
         catch (System.Exception ex)
         {
-
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<string>
-            { Message = "Server Error", StatusHttp = (int)HttpStatusCode.InternalServerError, Result = null });
+            {
+                Message = "Server Error",
+                StatusHttp = (int)HttpStatusCode.InternalServerError,
+                Result = null
+            });
         }
     }
 
@@ -69,6 +80,15 @@ public class AuthController : ControllerBase
                 Result = output
             });
         }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+                Result = false
+            });
+        }
         catch (HttpRequestException ex)
         {
             return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
@@ -80,7 +100,6 @@ public class AuthController : ControllerBase
         }
         catch (System.Exception ex)
         {
-
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<bool>
             {
                 Message = "Server Error",

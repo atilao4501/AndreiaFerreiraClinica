@@ -63,7 +63,7 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
             }
         }
 
-        public async Task<IEnumerable<SessionModel>> GetAllSessionsAsync()
+        public async Task<List<SessionModel>> GetAllSessionsAsync()
         {
             try
             {

@@ -8,7 +8,7 @@ namespace AndreiaFerreira.ClinicaApi.Interfaces;
 
 public interface ISessionRepository
 {
-    Task<IEnumerable<SessionModel>> GetAllSessionsAsync();
+    Task<List<SessionModel>> GetAllSessionsAsync();
     Task<SessionModel> GetSessionAsync(int id);
     Task<SessionModel> CreateSessionAsync(SessionModel session);
     Task<SessionModel> UpdateSessionAsync(UpdateSessionDTO updateSessionDTO);
