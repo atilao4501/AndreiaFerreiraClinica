@@ -4,7 +4,7 @@ version: "3.4"
 
 services:
   andreiaferreiraclinicaapi:
-    image: atilao450/andreia.ferreira.backend
+    image: atilao450/andreia.ferreira.backend:v1.0
     build:
       context: .
       dockerfile: ./Dockerfile
