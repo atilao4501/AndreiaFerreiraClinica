@@ -4,14 +4,13 @@ EXPOSE 80
 
 ENV ASPNETCORE_URLS=http://+:80
 
-USER app
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG configuration=Release
 WORKDIR /src
-COPY ["AndreiaFerreira.ClinicaApi/AndreiaFerreira.ClinicaApi.csproj", "AndreiaFerreira.ClinicaApi/"]
-RUN dotnet restore "AndreiaFerreira.ClinicaApi/AndreiaFerreira.ClinicaApi.csproj"
+COPY ["AndreiaFerreira.ClinicaApi.csproj", "./"]
+RUN dotnet restore "AndreiaFerreira.ClinicaApi.csproj"
 COPY . .
-WORKDIR "/src/AndreiaFerreira.ClinicaApi"
+WORKDIR "/src/."
 RUN dotnet build "AndreiaFerreira.ClinicaApi.csproj" -c $configuration -o /app/build
 
 FROM build AS publish

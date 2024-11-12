@@ -6,7 +6,6 @@ namespace AndreiaFerreira.ClinicaApi.Models.Entities;
 
 public class ClientModel
 {
-    [JsonIgnore]
     public int Id { get; set; }
     public string Nome_completo { get; set; }
     public string RG { get; set; }

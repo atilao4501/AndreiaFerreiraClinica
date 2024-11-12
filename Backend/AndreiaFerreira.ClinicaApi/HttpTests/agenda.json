@@ -6,90 +6,44 @@
   },
   "item": [
     {
-      "name": "Criar Agenda",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"PacienteId\": 1, \"DataAgendamento\": \"2024-03-16T14:30:00\", \"Observacoes\": \"Observações da agenda\", \"Profissional\": \"Profissional responsável\", \"Tipo_de_servico\": \"Tipo de serviço\"}"
-        },
-        "url": {
-          "raw": "http://localhost:5245/api/Agenda",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5245",
-          "path": ["api", "Agenda"]
-        }
-      }
-    },
-    {
-      "name": "Buscar Agenda por ID do Paciente",
+      "name": "GetAllSessionAgendaAsync",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5245/api/Agenda/paciente/1",
+          "raw": "http://localhost:5245/api/Agenda/GetAllSessionAgendaAsync",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "Agenda", "paciente", "1"]
+          "path": ["api", "Agenda", "GetAllSessionAgendaAsync"]
         }
       }
     },
     {
-      "name": "Buscar Agenda por CPF do Paciente",
+      "name": "GetAgendaByClientAsync",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5245/api/Agenda/paciente/cpf/12345678901",
+          "raw": "http://localhost:5245/api/Agenda/GetAgendaByClientAsync/1",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "Agenda", "paciente", "cpf", "12345678901"]
+          "path": ["api", "Agenda", "GetAgendaByClientAsync", "1"]
         }
       }
     },
     {
-      "name": "Atualizar Agenda",
+      "name": "GetAgendaByDateAsync",
       "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"Id\": 1, \"PacienteId\": 1, \"DataAgendamento\": \"2024-03-16T14:30:00\", \"Observacoes\": \"Observações da agenda atualizada\", \"Profissional\": \"Profissional responsável\", \"Tipo_de_servico\": \"Tipo de serviço\"}"
-        },
-        "url": {
-          "raw": "http://localhost:5245/api/Agenda",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5245",
-          "path": ["api", "Agenda"]
-        }
-      }
-    },
-    {
-      "name": "Deletar Agenda",
-      "request": {
-        "method": "DELETE",
+        "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5245/api/Agenda/1",
+          "raw": "http://localhost:5245/api/Agenda/GetAgendaByDateAsync/2024-03-16",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "Agenda", "1"]
+          "path": ["api", "Agenda", "GetAgendaByDateAsync", "2024-03-16"]
         }
       }
     }

@@ -104,16 +104,30 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AndreiaFerreira.ClinicaApi v1"));
-}
+// if (app.Environment.IsDevelopment())
+// {
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AndreiaFerreira.ClinicaApi v1"));
+// }
+
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        scope.ServiceProvider.GetService<ClinicDbContext>().Database.Migrate();
+        scope.ServiceProvider.GetService<IdentityPersonalizedDbContext>().Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Erro ao rodar migrations: " + ex.Message);
+    }
+}
 
 app.Run();
 

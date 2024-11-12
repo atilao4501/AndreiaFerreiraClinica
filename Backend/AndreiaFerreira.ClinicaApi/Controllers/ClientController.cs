@@ -1,6 +1,6 @@
-using System;
 using System.Net;
 using AndreiaFerreira.ClinicaApi.Interfaces;
+using AndreiaFerreira.ClinicaApi.Models;
 using AndreiaFerreira.ClinicaApi.Models.DTO;
 using AndreiaFerreira.ClinicaApi.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -41,6 +41,14 @@ public class ClientController : ControllerBase
                 StatusHttp = 400,
             });
         }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<ClientModel>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+            });
+        }
         catch (Exception ex)
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
@@ -68,8 +76,16 @@ public class ClientController : ControllerBase
         {
             return NotFound(new DefaultOutput<bool>
             {
-                Message = "Cliente não encontrado",
+                Message = "Cliente n o encontrado",
                 StatusHttp = 404,
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<bool>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)
@@ -93,6 +109,14 @@ public class ClientController : ControllerBase
                 Message = "Clientes recuperados com sucesso",
                 StatusHttp = 200,
                 Result = result
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<IEnumerable<ClientModel>>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)
@@ -124,6 +148,14 @@ public class ClientController : ControllerBase
             {
                 Message = "Cliente n o encontrado",
                 StatusHttp = 404,
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<ClientModel>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)
@@ -165,6 +197,14 @@ public class ClientController : ControllerBase
                 StatusHttp = 404,
             });
         }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<ClientModel>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+            });
+        }
         catch (Exception ex)
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
@@ -195,6 +235,14 @@ public class ClientController : ControllerBase
                 StatusHttp = 404,
             });
         }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<ClientModel>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
+            });
+        }
         catch (Exception ex)
         {
             return StatusCode((int)HttpStatusCode.InternalServerError, new DefaultOutput<ClientModel>
@@ -216,6 +264,14 @@ public class ClientController : ControllerBase
                 Message = "Todos os clientes com anamnese recuperados com sucesso",
                 StatusHttp = 200,
                 Result = result
+            });
+        }
+        catch (PersonalizedException ex)
+        {
+            return StatusCode((int)ex.StatusCode, new DefaultOutput<IEnumerable<ClientModel>>
+            {
+                Message = ex.Message,
+                StatusHttp = (int)ex.StatusCode,
             });
         }
         catch (Exception ex)

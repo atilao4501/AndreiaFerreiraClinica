@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "name": "Criar Cliente",
+      "name": "Create",
       "request": {
         "method": "POST",
         "header": [
@@ -17,47 +17,89 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\"nome\": \"Nome do cliente\", \"cpf\": \"12345678901\", \"dataNascimento\": \"1990-01-01\"}"
+          "raw": "{\"Id\": 0, \"Nome\": \"Nome do cliente\", \"Email\": \"email@example.com\", \"Telefone\": \"1234567890\"}"
         },
         "url": {
-          "raw": "http://localhost:5245/api/cliente",
+          "raw": "http://localhost:5245/api/Client/Create",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "cliente"]
+          "path": ["api", "Client", "Create"]
         }
       }
     },
     {
-      "name": "Buscar Cliente por ID",
+      "name": "Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Client/Delete/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Client", "Delete", "1"]
+        }
+      }
+    },
+    {
+      "name": "GetAll",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5245/api/cliente/1",
+          "raw": "http://localhost:5245/api/Client/GetAll",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "cliente", "1"]
+          "path": ["api", "Client", "GetAll"]
         }
       }
     },
     {
-      "name": "Buscar Cliente por CPF",
+      "name": "GetById",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5245/api/cliente/cpf/12345678901",
+          "raw": "http://localhost:5245/api/Client/GetById/1",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "cliente", "cpf", "12345678901"]
+          "path": ["api", "Client", "GetById", "1"]
         }
       }
     },
     {
-      "name": "Atualizar Cliente",
+      "name": "GetClientWithAnamnese",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Client/GetClientWithAnamnese/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Client", "GetClientWithAnamnese", "1"]
+        }
+      }
+    },
+    {
+      "name": "GetAllClientsWithAnamnese",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Client/GetAllClientsWithAnamnese",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Client", "GetAllClientsWithAnamnese"]
+        }
+      }
+    },
+    {
+      "name": "Update",
       "request": {
         "method": "PUT",
         "header": [
@@ -68,42 +110,14 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\"id\": 1, \"nome\": \"Nome do cliente atualizado\", \"cpf\": \"12345678901\", \"dataNascimento\": \"1990-01-01\"}"
+          "raw": "{\"Id\": 1, \"Nome\": \"Nome do cliente atualizado\", \"Email\": \"email@example.com\", \"Telefone\": \"1234567890\"}"
         },
         "url": {
-          "raw": "http://localhost:5245/api/cliente",
+          "raw": "http://localhost:5245/api/Client/Update",
           "protocol": "http",
           "host": ["localhost"],
           "port": "5245",
-          "path": ["api", "cliente"]
-        }
-      }
-    },
-    {
-      "name": "Deletar Cliente",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5245/api/cliente/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5245",
-          "path": ["api", "cliente", "1"]
-        }
-      }
-    },
-    {
-      "name": "Buscar Cliente com Anamnese",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5245/api/cliente/anamnese/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5245",
-          "path": ["api", "cliente", "anamnese", "1"]
+          "path": ["api", "Client", "Update"]
         }
       }
     }
