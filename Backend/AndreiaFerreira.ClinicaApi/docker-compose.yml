@@ -3,16 +3,6 @@
 version: "3.4"
 
 services:
-  andreiaferreiraclinicaapi:
-    image: atilao450/andreia.ferreira.backend:v1.0
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - 5245:80
-    depends_on:
-      - db
-
   db:
     image: postgres
     restart: always
@@ -34,3 +24,13 @@ services:
     restart: always
     ports:
       - "8080:8080"
+
+  andreiaferreiraclinicaapi:
+    image: atilao450/andreia.ferreira.backend:v1.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5245:80
+    depends_on:
+      - db
