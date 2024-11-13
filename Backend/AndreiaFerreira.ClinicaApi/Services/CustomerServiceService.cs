@@ -31,9 +31,9 @@ public class CustomerServiceService : ICustomerServiceService
         return customerServiceReturn;
     }
 
-    public async Task<CustomerServiceModel> GetByClient(int clientId)
+    public async Task<CustomerServiceModel> GetByClient(string cpf)
     {
-        var sessions = await _sessionRepository.GetSessionsByClientAsync(clientId);
+        var sessions = await _sessionRepository.GetSessionsByClientAsync(cpf);
         CustomerServiceModel customerServiceReturn;
 
         customerServiceReturn = new CustomerServiceModel

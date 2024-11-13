@@ -50,12 +50,12 @@ public class CustomerServiceController : ControllerBase
         }
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<DefaultOutput<CustomerServiceModel>>> GetById(int id)
+    [HttpGet("{cpf}")]
+    public async Task<ActionResult<DefaultOutput<CustomerServiceModel>>> GetByCpf(string cpf)
     {
         try
         {
-            var result = await _customerServiceService.GetByClient(id);
+            var result = await _customerServiceService.GetByClient(cpf);
 
             if (result == null)
                 return NotFound();

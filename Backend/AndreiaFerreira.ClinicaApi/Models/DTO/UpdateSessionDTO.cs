@@ -7,7 +7,7 @@ namespace AndreiaFerreira.ClinicaApi.Models.DTO;
 public class UpdateSessionDTO
 {
     public int? Id { get; set; }
-    public int? PacienteId { get; set; }
+    public string? Cpf { get; set; }
 
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
     public DateTime? DataHoraSessao { get; set; }

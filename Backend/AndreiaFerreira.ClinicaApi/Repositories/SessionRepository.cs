@@ -26,7 +26,7 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
 
         public async Task<SessionModel> CreateSessionAsync(SessionModel session)
         {
-            var client = await _clientRepository.GetClientAsync(session.Paciente.Id);
+            var client = await _clientRepository.GetClientAsync(session.Paciente.CPF);
             if (client == null)
             {
                 throw new PersonalizedException("Cliente não encontrado", HttpStatusCode.NotFound);
@@ -96,11 +96,11 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
                 throw new PersonalizedException("Ocorreu um erro ao tentar buscar uma sessão", HttpStatusCode.InternalServerError);
             }
         }
-        public async Task<List<SessionModel>> GetSessionsByClientAsync(int id)
+        public async Task<List<SessionModel>> GetSessionsByClientAsync(string cpf)
         {
             try
             {
-                var client = await _clientRepository.GetClientAsync(id);
+                var client = await _clientRepository.GetClientAsync(cpf);
                 if (client == null)
                 {
                     throw new PersonalizedException("Cliente não encontrado", HttpStatusCode.NotFound);
@@ -168,9 +168,9 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
                 }
 
                 ClientModel client = null;
-                if (updateSessionDTO.PacienteId != null)
+                if (updateSessionDTO.Cpf != null)
                 {
-                    client = await _clientRepository.GetClientAsync(updateSessionDTO.PacienteId.Value);
+                    client = await _clientRepository.GetClientAsync(updateSessionDTO.Cpf);
                     if (client == null)
                     {
                         throw new PersonalizedException("Cliente não encontrado", HttpStatusCode.NotFound);

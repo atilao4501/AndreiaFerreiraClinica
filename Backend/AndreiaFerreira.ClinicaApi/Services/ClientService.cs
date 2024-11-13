@@ -21,9 +21,9 @@ public class ClientService : IClientService
         return await _clientRepository.CreateClientAsync(client);
     }
 
-    public async Task<bool> DeleteClientAsync(int id)
+    public async Task<bool> DeleteClientAsync(string cpf)
     {
-        return await _clientRepository.DeleteClientAsync(id);
+        return await _clientRepository.DeleteClientAsync(cpf);
     }
 
     public async Task<IEnumerable<ClientModel>> GetAllClientsAsync()
@@ -36,20 +36,20 @@ public class ClientService : IClientService
         return await _clientRepository.GetAllClientsWithAnamneseAsync();
     }
 
-    public async Task<ClientModel> GetClientAsync(int id)
+    public async Task<ClientModel> GetClientAsync(string cpf)
     {
-        return await _clientRepository.GetClientAsync(id);
+        return await _clientRepository.GetClientAsync(cpf);
     }
 
-    public async Task<ClientModel> GetClientWithAnamneseAsync(int id)
+    public async Task<ClientModel> GetClientWithAnamneseAsync(string cpf)
     {
-        return await _clientRepository.GetClientWithAnamneseAsync(id);
+        return await _clientRepository.GetClientWithAnamneseAsync(cpf);
 
     }
 
     public async Task<ClientModel> UpdateClientAsync(ClientModel client)
     {
-        return await _clientRepository.UpdateClientAsync(client.Id, client);
+        return await _clientRepository.UpdateClientAsync(client.CPF, client);
     }
 }
 

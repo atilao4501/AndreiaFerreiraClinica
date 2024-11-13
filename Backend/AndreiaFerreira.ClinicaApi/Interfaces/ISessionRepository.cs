@@ -13,7 +13,7 @@ public interface ISessionRepository
     Task<SessionModel> CreateSessionAsync(SessionModel session);
     Task<SessionModel> UpdateSessionAsync(UpdateSessionDTO updateSessionDTO);
     Task DeleteSessionAsync(int id);
-    Task<List<SessionModel>> GetSessionsByClientAsync(int id);
+    Task<List<SessionModel>> GetSessionsByClientAsync(string cpf);
     Task<List<SessionModel>> GetSessionsByDateAsync(DateTime? initialDate = null, DateTime? finalDate = null);
 }
 

@@ -21,7 +21,7 @@ public class SessionService : ISessionService
 
     public async Task<SessionModel> CreateSessionAsync(CreateSessionDTO createSessionDTO)
     {
-        var client = await _clientRepository.GetClientAsync(createSessionDTO.PacienteId);
+        var client = await _clientRepository.GetClientAsync(createSessionDTO.Cpf);
 
         var session = new SessionModel()
         {
@@ -50,9 +50,9 @@ public class SessionService : ISessionService
     {
         return await _sessionRepository.GetSessionAsync(id);
     }
-    public async Task<List<SessionModel>> GetSessionsByClientAsync(int id)
+    public async Task<List<SessionModel>> GetSessionsByClientAsync(string cpf)
     {
-        return await _sessionRepository.GetSessionsByClientAsync(id);
+        return await _sessionRepository.GetSessionsByClientAsync(cpf);
     }
 
     public async Task<List<SessionModel>> GetSessionsByDateAsync(DateTime? initialDate = null, DateTime? finalDate = null)

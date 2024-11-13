@@ -60,11 +60,11 @@ public class ClientController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<DefaultOutput<bool>>> Delete(int id)
+    public async Task<ActionResult<DefaultOutput<bool>>> Delete(string cpf)
     {
         try
         {
-            var result = await _clientService.DeleteClientAsync(id);
+            var result = await _clientService.DeleteClientAsync(cpf);
             return Ok(new DefaultOutput<bool>
             {
                 Message = "Cliente deletado com sucesso",
@@ -129,12 +129,12 @@ public class ClientController : ControllerBase
         }
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<DefaultOutput<ClientModel>>> GetById(int id)
+    [HttpGet("{cpf}")]
+    public async Task<ActionResult<DefaultOutput<ClientModel>>> GetByCpf(string cpf)
     {
         try
         {
-            var result = await _clientService.GetClientAsync(id);
+            var result = await _clientService.GetClientAsync(cpf);
             return Ok(new DefaultOutput<ClientModel>
             {
                 Message = "Cliente recuperado com sucesso",
@@ -214,12 +214,12 @@ public class ClientController : ControllerBase
             });
         }
     }
-    [HttpGet("{id}")]
-    public async Task<ActionResult<DefaultOutput<ClientModel>>> GetClientWithAnamnese(int id)
+    [HttpGet("{cpf}")]
+    public async Task<ActionResult<DefaultOutput<ClientModel>>> GetClientWithAnamnese(string cpf)
     {
         try
         {
-            var result = await _clientService.GetClientWithAnamneseAsync(id);
+            var result = await _clientService.GetClientWithAnamneseAsync(cpf);
             return Ok(new DefaultOutput<ClientModel>
             {
                 Message = "Cliente com anamnese recuperado com sucesso",

@@ -52,11 +52,11 @@ public class AgendaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAgendaByClientAsync(int clientId)
+    public async Task<IActionResult> GetAgendaByClientAsync(string cpf)
     {
         try
         {
-            var result = await _agendaService.GetScheduleByClientAsync(clientId);
+            var result = await _agendaService.GetScheduleByClientAsync(cpf);
 
             return Ok(new DefaultOutput<IEnumerable<SessionModel>>
             {

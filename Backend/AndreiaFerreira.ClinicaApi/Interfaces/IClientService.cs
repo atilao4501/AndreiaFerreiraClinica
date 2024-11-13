@@ -7,9 +7,9 @@ public interface IClientService
 {
     Task<ClientModel> CreateClientAsync(ClientModel client);
     Task<ClientModel> UpdateClientAsync(ClientModel client);
-    Task<bool> DeleteClientAsync(int id);
+    Task<bool> DeleteClientAsync(string cpf);
     Task<IEnumerable<ClientModel>> GetAllClientsAsync();
-    Task<ClientModel> GetClientAsync(int id);
-    Task<ClientModel> GetClientWithAnamneseAsync(int id);
+    Task<ClientModel> GetClientAsync(string cpf);
+    Task<ClientModel> GetClientWithAnamneseAsync(string cpf);
     Task<IEnumerable<ClientModel>> GetAllClientsWithAnamneseAsync();
 }

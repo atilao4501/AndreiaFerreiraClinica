@@ -12,14 +12,14 @@ public interface IClientRepository
     Task<ClientModel> CreateClientAsync(ClientModel client);
 
     // Implementar endpoint PUT para atualizar dados do paciente
-    Task<ClientModel> UpdateClientAsync(int id, ClientModel client);
+    Task<ClientModel> UpdateClientAsync(string cpf, ClientModel client);
 
     // Implementar endpoint DELETE para remover paciente
-    Task<bool> DeleteClientAsync(int id);
+    Task<bool> DeleteClientAsync(string cpf);
     // Implementar endpoint GET para obter um paciente pelo ID
-    Task<ClientModel> GetClientAsync(int id);
+    Task<ClientModel> GetClientAsync(string cpf);
     // Implementar endpoint GET para obter um paciente com as rela es
     // de anamnese
     Task<IEnumerable<ClientModel>> GetAllClientsWithAnamneseAsync();
-    public Task<ClientModel> GetClientWithAnamneseAsync(int id);
+    public Task<ClientModel> GetClientWithAnamneseAsync(string cpf);
 }

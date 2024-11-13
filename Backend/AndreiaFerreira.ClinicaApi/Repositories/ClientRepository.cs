@@ -33,9 +33,11 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
             return client;
         }
 
-        public async Task<bool> DeleteClientAsync(int id)
+        public async Task<bool> DeleteClientAsync(string cpf)
         {
-            var client = await _context.Pacientes.FindAsync(id);
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            var client = await _context.Pacientes.FirstOrDefaultAsync(x => x.CPF.Equals(cpf));
             if (client == null)
             {
                 throw new PersonalizedException("Paciente não encontrado", HttpStatusCode.NotFound);
@@ -51,14 +53,16 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
             return await _context.Pacientes.AsNoTracking().ToListAsync();
         }
 
-        public async Task<ClientModel> UpdateClientAsync(int id, ClientModel client)
+        public async Task<ClientModel> UpdateClientAsync(string cpf, ClientModel client)
         {
             if (client == null)
             {
                 throw new PersonalizedException("O paciente não pode ser nulo", HttpStatusCode.BadRequest);
             }
 
-            var clientFromDb = await _context.Pacientes.FindAsync(id);
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            var clientFromDb = await _context.Pacientes.FirstOrDefaultAsync(x => x.CPF.Equals(cpf));
             if (clientFromDb == null)
             {
                 throw new PersonalizedException("Paciente não encontrado", HttpStatusCode.NotFound);
@@ -69,9 +73,11 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
             return clientFromDb;
         }
 
-        public async Task<ClientModel> GetClientAsync(int id)
+        public async Task<ClientModel> GetClientAsync(string cpf)
         {
-            var client = await _context.Pacientes.FindAsync(id);
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            var client = await _context.Pacientes.FirstOrDefaultAsync(x => x.CPF.Equals(cpf));
             if (client == null)
             {
                 throw new PersonalizedException("Paciente não encontrado", HttpStatusCode.NotFound);
@@ -79,9 +85,11 @@ namespace AndreiaFerreira.ClinicaApi.Repositories
             return client;
         }
 
-        public async Task<ClientModel> GetClientWithAnamneseAsync(int id)
+        public async Task<ClientModel> GetClientWithAnamneseAsync(string cpf)
         {
-            var client = await _context.Pacientes.Include(c => c.Anamnese).FirstOrDefaultAsync(c => c.Id == id);
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            var client = await _context.Pacientes.Include(c => c.Anamnese).FirstOrDefaultAsync(c => c.CPF.Equals(cpf));
             if (client == null)
             {
                 throw new PersonalizedException("Paciente não encontrado", HttpStatusCode.NotFound);
