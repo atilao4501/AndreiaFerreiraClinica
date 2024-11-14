@@ -1,0 +1,51 @@
+{
+  "info": {
+    "_postman_id": "AgendaController",
+    "name": "AgendaController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GetAllSessionAgendaAsync",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/GetAllSessionAgendaAsync",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "GetAllSessionAgendaAsync"]
+        }
+      }
+    },
+    {
+      "name": "GetAgendaByClientAsync",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/GetAgendaByClientAsync/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "GetAgendaByClientAsync", "1"]
+        }
+      }
+    },
+    {
+      "name": "GetAgendaByDateAsync",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5245/api/Agenda/GetAgendaByDateAsync/2024-03-16",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5245",
+          "path": ["api", "Agenda", "GetAgendaByDateAsync", "2024-03-16"]
+        }
+      }
+    }
+  ]
+}
