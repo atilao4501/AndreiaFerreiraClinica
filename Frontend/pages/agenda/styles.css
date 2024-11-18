@@ -148,7 +148,7 @@ body {
     border-radius: 5px;
 }
 
-/* Tabela de agendamentos */
+/* schedule table */
 .table td, .table th {
     vertical-align: middle;
 }
