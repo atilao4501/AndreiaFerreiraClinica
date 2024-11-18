@@ -111,11 +111,16 @@ body {
     margin-bottom: 20px;
 }
 
+/* close button */
+.btn-secondary {
+    border-radius: 20px;
+}
+
 .main-header .d-flex {
     gap: 20px;
 }
 
-/* Calendar Styles */
+/* calendar styles */
 .calendar {
     margin-bottom: 30px;
 }
