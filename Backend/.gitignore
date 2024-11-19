@@ -1,0 +1,20 @@
+# Ignore bin and obj folders
+bin/
+obj/
+
+# Ignore VS Code files
+.vscode/
+
+# Ignore NuGet packages
+*.nupkg
+
+# Ignore .NET runtime files
+*.runtimeconfig
+*.runtimeconfig.json
+*.xml
+
+# Ignore user secrets
+secrets.json
+
+# Ignore logs
+*.log
