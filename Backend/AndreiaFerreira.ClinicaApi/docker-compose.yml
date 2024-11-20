@@ -9,18 +9,28 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: Root@123
+    networks:
+      - internal_network
 
   adminer:
     image: adminer
     restart: always
     ports:
       - "8080:8080"
+    networks:
+      - internal_network
 
   andreiaferreiraclinicaapi:
-    build: # Define que será usado um Dockerfile
-      context: . # Diretório do build (geralmente onde está o Dockerfile)
-      dockerfile: ./Dockerfile # Caminho para o Dockerfile (se não estiver no mesmo nível, ajuste o caminho)
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - "5245:80"
     depends_on:
       - db
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
